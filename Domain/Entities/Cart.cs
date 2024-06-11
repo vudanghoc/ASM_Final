@@ -10,15 +10,15 @@ namespace Domain.Entities
 
         [ForeignKey("User")]
         public string UserId { get; set; }
-        public AppUser User { get; set; }
+        public AppUser? User { get; set; }
 
         [ForeignKey("Combo")]
         public int ComboId { get; set; }
-        public Combo Combo { get; set; }
+        public Combo? Combo { get; set; }
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
 
         public int Quantity { get; set; }
         public decimal Price { get; set; }

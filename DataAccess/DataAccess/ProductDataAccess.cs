@@ -26,12 +26,12 @@ namespace DataAccess.DataAccess
 
         public async Task<IEnumerable<Product>> GetAllProducts()
         {
-          return await _context.Products.Include(x=>x.Category).ToListAsync();
+            return await _context.Products.Include(x => x.Category).ToListAsync();
         }
 
         public async Task<Product> GetProductById(int id)
         {
-            return await _context.Products.Include(x=>x.Category).SingleOrDefaultAsync(x => x.Id == id);
+            return await _context.Products.Include(x => x.Category).SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public Product UpdateProduct(Product product)
