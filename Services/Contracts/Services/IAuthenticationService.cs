@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Services.Contracts.Services
 {
-    public interface IUserServices
+    public interface IAuthenticationService
     {
         Task<UserMangeResponse> RegisterUser(RegisterForView model);
         Task<UserMangeResponse> LoginUser(LoginForView model);

@@ -21,7 +21,8 @@ namespace WebAPI.Services.Extensions
             services.AddScoped<IOrderDataAccess, OrderDataAccess>();
             services.AddScoped<IOrderDetailDataAccess, OrderDetailDataAccess>();
             //Service
-            services.AddScoped<IUserServices, UserService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IComboService, ComboService>();
@@ -33,6 +34,7 @@ namespace WebAPI.Services.Extensions
                 c.AddProfile<CategoryProfile>();
                 c.AddProfile<OrderProfile>();
                 c.AddProfile<ComboProfile>();
+                c.AddProfile<UserProfile>();
             });
 
             services.AddSingleton<IMapper>(s => config.CreateMapper());

@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Services.Contracts.Services;
-using Services.Models.Authentication.Base;
 using Services.Models.Authentication;
+using Services.Models.Authentication.Base;
 
 namespace WebAPI.Services.Controllers
 {
@@ -10,8 +9,8 @@ namespace WebAPI.Services.Controllers
     [ApiController]
     public class AuthenticationController : Controller
     {
-        private IUserServices _userService;
-        public AuthenticationController(IUserServices userService)
+        private IAuthenticationService _userService;
+        public AuthenticationController(IAuthenticationService userService)
         {
             _userService = userService;
         }
