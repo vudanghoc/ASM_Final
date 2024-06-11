@@ -8,6 +8,6 @@ namespace Domain.Entities
         public DateTimeOffset? LastLoggedInDate { get; set; }
         public string? RefreshToken { get; set; }
         public DateTimeOffset? RefreshTokenExpiryTime { get; set; }
-        public ICollection<Cart>? Carts { get; set; }
+        //public ICollection<Cart>? Carts { get; set; }
     }
 }
