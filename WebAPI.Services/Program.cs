@@ -17,8 +17,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("pgAdmin4Connect"));
-    //options.UseSqlServer(builder.Configuration.GetConnectionString("Connect"));
+   // options.UseNpgsql(builder.Configuration.GetConnectionString("pgAdmin4Connect"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Connect"));
 });
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
