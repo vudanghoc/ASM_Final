@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Services.Contracts.DataAccess;
+using Services.Contracts.DataAccess.Base;
 using Services.Contracts.Services;
 using Services.Models.Product;
 
@@ -10,14 +11,16 @@ namespace Services.Services
     public class ProductService : IProductService
     {
         private readonly IProductDataAccess _productDataAccess;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<ProductService> _logger;
         private readonly IMapper _mapper;
 
-        public ProductService(IProductDataAccess productDataAccess, ILogger<ProductService> logger, IMapper mapper)
+        public ProductService(IProductDataAccess productDataAccess, ILogger<ProductService> logger, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _productDataAccess = productDataAccess;
             _logger = logger;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Product> AddProduct(ProductForCreate productDto)
@@ -92,7 +95,9 @@ namespace Services.Services
                 if (product != null)
                 {
                     _mapper.Map(productDto, product);
-                    _productDataAccess.UpdateProduct(product);
+                    //_productDataAccess.UpdateProduct(product);
+                    _unitOfWork.ProductDataAccess.UpdateProduct(product);
+                    await _unitOfWork.SaveChangesAsync();
                     return true;
                 }
             }

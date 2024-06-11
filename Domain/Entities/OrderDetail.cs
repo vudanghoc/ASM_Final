@@ -14,6 +14,6 @@ namespace Domain.Entities
         public Order Order { get; set; }
         [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

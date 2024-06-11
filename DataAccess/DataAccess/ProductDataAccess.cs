@@ -36,7 +36,8 @@ namespace DataAccess.DataAccess
 
         public Product UpdateProduct(Product product)
         {
-            return Update(product);
+            _context.Update(product);
+            return product;
         }
     }
 }
