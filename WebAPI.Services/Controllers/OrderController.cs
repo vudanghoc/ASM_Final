@@ -27,5 +27,29 @@ namespace WebAPI.Services.Controllers
             OrderForView combos = await _orderService.GetAllOrders();
             return Ok(combos);
         }
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] OrderForCreate orderDto)
+        {
+            var combo = await _orderService.AddOrder(orderDto);
+            return Ok(combo);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var combo = await _orderService.GetOrderById(id);
+            return Ok(combo);
+        }
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromBody] OrderForUpdateStatus orderDto, int id)
+        {
+            var combo = await _orderService.UpdateOrderStatus(orderDto, id);
+            return Ok(combo);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put([FromBody] OrderForUpdate orderDto, int id)
+        {
+            var combo = await _orderService.UpdateOrder(orderDto, id);
+            return Ok(combo);
+        }
     }
 }

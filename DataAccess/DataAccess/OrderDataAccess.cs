@@ -10,9 +10,10 @@ namespace DataAccess.DataAccess
         public OrderDataAccess(ApplicationDbContext context) : base(context)
         {
         }
-        public Task<Order> AddOrder(Order order)
+        public async Task<Order> AddOrder(Order order)
         {
-            throw new NotImplementedException();
+            await _context.AddAsync(order);
+            return order;
         }
 
         public bool DeleteOrder(Order order)
@@ -28,14 +29,19 @@ namespace DataAccess.DataAccess
                 .ToListAsync();
         }
 
-        public Task<Order> GetOrderById(int id)
+        public async Task<Order> GetOrderById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Orders
+                .Include(od => od.OrderDetails)
+                .ThenInclude(p => p.Product)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public Order UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            _context.Update(order);
+            return order;
+            //return Update(order);
         }
     }
 }
