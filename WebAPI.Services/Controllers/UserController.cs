@@ -22,7 +22,7 @@ namespace WebAPI.Services.Controllers
             var users = await _userService.GetAllUsersAsync();
             return Ok(users);
         }
-        [HttpPut("{userName}/role")]
+        [HttpPut("AddUserRole")]
         public async Task<ActionResult> UpdateUserRole(string userName, [FromBody] string newRole)
         {
             var result = await _userService.UpdateUserRole(userName, newRole);

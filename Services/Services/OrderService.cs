@@ -153,7 +153,13 @@ namespace Services.Services
                 Order order = await _unitOfWork.OrderDataAccess.GetOrderById(id);
                 if (order != null)
                 {
+                    var user = await _userManager.FindByIdAsync(order.UserId);
                     OrderForViewItems items = _mapper.Map<OrderForViewItems>(order);
+                    if (user != null)
+                    {
+                        items.UserName = user.UserName;
+                        items.UserId = user.Id;
+                    }
                     return items;
                 }
                 return null;
