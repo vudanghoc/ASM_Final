@@ -16,7 +16,7 @@ namespace WebAPI.Services.Controllers
             _userService = userService;
         }
 
-        [HttpGet("users")]
+        [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllUsersAsync();
